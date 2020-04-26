@@ -34,5 +34,25 @@ namespace PKKierowca.Controllers
             var Query = Builders<T>.Filter.Eq("id", ID);
             return collection.Find(Query).First();
         }
+        public void InsertData<T>(string table, T data)
+        {
+            var collection = db.GetCollection<T>(table);
+            collection.InsertOne(data);
+        }
+
+        public void DeleteRecord<T>(string table, string ID)
+        {
+            var collection = db.GetCollection<T>(table);
+            var Query = Builders<T>.Filter.Eq("id", ID);
+            collection.DeleteOne(Query);
+        }
+        public void UpdateRecord<T>(string table, string ID, T data)
+        {
+            var collection = db.GetCollection<T>(table);
+            var Query = Builders<T>.Filter.Eq("id", ID);
+
+            var result = collection.ReplaceOne(Query, data);
+
+        }
     }
 }

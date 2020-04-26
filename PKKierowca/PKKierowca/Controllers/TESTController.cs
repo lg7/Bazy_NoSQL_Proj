@@ -1,4 +1,6 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
+﻿using MongoDB.Bson.IO;
+using MongoDB.Bson.Serialization.Attributes;
+
 using PKKierowca.Models;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,6 @@ namespace PKKierowca.Controllers
         [HttpGet]
         public List<Cars> GetCars()
         {
-            // var a = db.LoadRecords<Addresses>("Addresses");
             return db.LoadRecords<Cars>("Cars");
         }
 
@@ -29,14 +30,36 @@ namespace PKKierowca.Controllers
         {
             return db.LoadRecordsbyId<Cars>("Cars", Id);
         }
+        [Route("API/TEST/Cars")]
+        [HttpPost]
+        public string PostCars([FromBody]Cars data)
+        {
+            db.InsertData("Cars", data);
+            return "succes";
+        }
 
+        [Route("API/TEST/Cars/{Id}")]
+        [HttpDelete]
+        public string DeleteCars(string Id)
+        {
+            db.DeleteRecord<Cars>("Cars", Id);
+            return "delete record " + Id;
+        }
+        [Route("API/TEST/Cars/Update/{Id}")]
+        [HttpPut]
+        public string UpdateCars([FromBody]Cars data, string Id)
+        {
+            data.id = Id;
+            db.UpdateRecord<Cars>("Cars", Id, data);
+
+            return "update data " + Id;
+        }
 
         /*****************ADDRESSES****************/
         [Route("API/TEST/Addresses")]
         [HttpGet]
         public List<Addresses> GetAddresses()
         {
-            // var a = db.LoadRecords<Addresses>("Addresses");
             return db.LoadRecords<Addresses>("Addresses");
         }
 
@@ -47,6 +70,36 @@ namespace PKKierowca.Controllers
             return db.LoadRecordsbyId<Addresses>("Addresses", Id);
         }
 
+        [Route("API/TEST/Addresses")]
+        [HttpPost]
+        public string PostAddresses([FromBody]Addresses data)
+        {
+            db.InsertData("Addresses", data);
+            
+            return "succes";
+        }
+
+        [Route("API/TEST/Addresses/{Id}")]
+        [HttpDelete]
+        public string DeleteAddresses(string Id)
+        {
+            db.DeleteRecord<Addresses>("Addresses", Id);
+            return "delete data " + Id;
+        }
+
+        [Route("API/TEST/Addresses/Update/{Id}")]
+        [HttpPut]
+        public string UpdateAddresses([FromBody]Addresses data, string Id)
+        {
+            data.id = Id;
+            db.UpdateRecord<Addresses>("Addresses", Id, data);
+
+            return "update data " + Id;
+        }
+
+
+
+
         /******************DRIVERS*****************/
 
         [Route("API/TEST/Drivers")]
@@ -56,13 +109,38 @@ namespace PKKierowca.Controllers
             // var a = db.LoadRecords<Addresses>("Addresses");
             return db.LoadRecords<Drivers>("Drivers");
         }
-        //
         [Route("API/TEST/Drivers/{Id}")]
         [HttpGet]
         public Drivers GetDriversById(string table, string Id)
         {
             return db.LoadRecordsbyId<Drivers>("Drivers", Id);
         }
+        [Route("API/TEST/Drivers")]
+        [HttpPost]
+        public string PostDrivers([FromBody]Drivers data)
+        {
+            db.InsertData("Drivers", data);
+            return "succes";
+        }
+
+        [Route("API/TEST/Drivers/{Id}")]
+        [HttpDelete]
+        public string DeleteDrivers(string Id)
+        {
+            db.DeleteRecord<Drivers>("Drivers", Id);
+            return "delete record " + Id;
+        }
+
+        [Route("API/TEST/Drivers/Update/{Id}")]
+        [HttpPut]
+        public string Update([FromBody]Drivers data, string Id)
+        {
+            data.id = Id;
+            db.UpdateRecord<Drivers>("Drivers", Id, data);
+
+            return "update data " + Id;
+        }
+
         /***************POSITON********************/
         [Route("API/TEST/Position")]
         [HttpGet]
@@ -78,6 +156,34 @@ namespace PKKierowca.Controllers
         {
             return db.LoadRecordsbyId<Position>("Position", Id);
         }
+
+        [HttpPost]
+        public string PostPosition([FromBody]Position data)
+        {
+            db.InsertData("Position", data);
+            return "succes";
+        }
+
+        [Route("API/TEST/Position/{Id}")]
+        [HttpDelete]
+        public string DeletePosition(string Id)
+        {
+            db.DeleteRecord<Position>("Position", Id);
+            return "delete data " + Id;
+        }
+
+        [Route("API/TEST/Position/Update/{Id}")]
+        [HttpPut]
+        public string Update([FromBody]Position data, string Id)
+        {
+            data.id = Id;
+            db.UpdateRecord<Position>("Position", Id, data);
+
+            return "update data " + Id;
+        }
+        /*****************END***********************/
+
+
         /*********************************
    public class Addresses
    {

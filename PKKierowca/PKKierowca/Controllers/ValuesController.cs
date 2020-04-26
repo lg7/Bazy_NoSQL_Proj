@@ -24,6 +24,7 @@ namespace PKKierowca.Controllers
         // POST api/values
         public void Post([FromBody]string value)
         {
+            string nowy = value;
         }
 
         // PUT api/values/5

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json.Linq;
 
 namespace PKKierowca.Models
 {
@@ -14,5 +15,14 @@ namespace PKKierowca.Models
         public int pos_x { get; set; }
         public int pos_y { get; set; }
         public string address { get; set; }
+        /*
+        public Addresses(string json)
+        {
+            JObject jObject = JObject.Parse(json);
+            JToken jAddresses = jObject["Addresses"];
+            pos_x = (int)jAddresses["pos_x"];
+            pos_y = (int)jAddresses["pos_y"];
+            address = (string)jAddresses["email"];
+        }*/
     }
 }
