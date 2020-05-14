@@ -11,3 +11,16 @@ C:\Users\Adi\source\repos\BotApi\BotApi\obj\Debug\BotApi.pdb
 C:\Users\Adi\source\repos\BotApi\BotApi\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Adi\source\repos\BotApi\BotApi\bin\Debug\Newtonsoft.Json.xml
 C:\Users\Adi\source\repos\BotApi\BotApi\obj\Debug\BotApi.csproj.CopyComplete
+C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\bin\Debug\BotApi.exe.config
+C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\bin\Debug\BotApi.exe
+C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\bin\Debug\BotApi.pdb
+C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\bin\Debug\Newtonsoft.Json.xml
+C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.csprojAssemblyReference.cache
+C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.Form1.resources
+C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.Properties.Resources.resources
+C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.csproj.GenerateResource.cache
+C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.csproj.CoreCompileInputs.cache
+C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.csproj.CopyComplete
+C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.exe
+C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.pdb

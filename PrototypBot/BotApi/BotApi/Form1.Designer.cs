@@ -42,6 +42,7 @@
             this.speedBox7 = new System.Windows.Forms.TextBox();
             this.sendButton = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
+            this.stopButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -159,11 +160,22 @@
             this.label8.Size = new System.Drawing.Size(0, 13);
             this.label8.TabIndex = 16;
             // 
+            // stopButton
+            // 
+            this.stopButton.Location = new System.Drawing.Point(592, 70);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(75, 23);
+            this.stopButton.TabIndex = 17;
+            this.stopButton.Text = "STOP";
+            this.stopButton.UseVisualStyleBackColor = true;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.stopButton);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.sendButton);
             this.Controls.Add(this.speedBox7);
@@ -202,6 +214,7 @@
         private System.Windows.Forms.TextBox speedBox7;
         private System.Windows.Forms.Button sendButton;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button stopButton;
     }
 }
 

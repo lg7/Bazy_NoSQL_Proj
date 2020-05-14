@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,6 +18,9 @@ namespace BotApi
     {
 
         static HttpClient client = new HttpClient();
+        bool start = false;
+
+
 
         public Form1()
         {
@@ -44,36 +48,47 @@ namespace BotApi
 
         private async void sendButton_Click(object sender, EventArgs e)
         {
+            start = true;
 
             await testmetodyAsync();
 
         }
 
+
         public async Task testmetodyAsync()
         {
-            var position = new Position();
-           
-            position.pos_x= Int32.Parse(posxBox3.Text);
-            position.pos_y= Int32.Parse(posyBox4.Text);
-            position.rn = rmBox5.Text;
-            position.speed = Int32.Parse(speedBox7.Text);
-            position.pesel = rmBox5.Text;
-            position.date = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
+            // for (int i = 0; i <= 19; i++)
+            Random rnd = new Random();
+            int i = 1;
+            do
+            {
+                var position = new Position();
 
-            var json = JsonConvert.SerializeObject(position);
-            var data = new StringContent(json, Encoding.UTF8, "application/json");
+                position.pos_x = Int32.Parse(posxBox3.Text)+ rnd.Next(-10,10);
+                position.pos_y = Int32.Parse(posyBox4.Text) + rnd.Next(-10, 10);
+                position.rn = rmBox5.Text;
+                position.speed = Int32.Parse(speedBox7.Text);
+                position.pesel = rmBox5.Text;
+                position.date = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
 
+                var json = JsonConvert.SerializeObject(position);
+                var data = new StringContent(json, Encoding.UTF8, "application/json");
 
+                string url = textBox1.Text;
+                var response = await client.PostAsync(url, data);
+                string result = response.Content.ReadAsStringAsync().Result;
 
-            string url = textBox1.Text;
+                label8.Text = result + " " + i;
+                i++;
+                Thread.Sleep(5000);
 
-            var response = await client.PostAsync(url, data);
-
-            string result = response.Content.ReadAsStringAsync().Result;
-
-            label8.Text = result;
+            } while (start == true);
 
         }
 
+        private void stopButton_Click(object sender, EventArgs e)
+        {
+            start = false;
+        }
     }
 }
