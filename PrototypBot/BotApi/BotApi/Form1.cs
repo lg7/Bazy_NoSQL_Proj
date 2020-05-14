@@ -60,14 +60,16 @@ namespace BotApi
             // for (int i = 0; i <= 19; i++)
             Random rnd = new Random();
             int i = 1;
+            var position = new Position();
+
             do
             {
-                var position = new Position();
+                
 
                 position.pos_x = Int32.Parse(posxBox3.Text)+ rnd.Next(-10,10);
                 position.pos_y = Int32.Parse(posyBox4.Text) + rnd.Next(-10, 10);
                 position.rn = rmBox5.Text;
-                position.speed = Int32.Parse(speedBox7.Text);
+                position.speed = Int32.Parse(speedBox7.Text) + rnd.Next(-5, 5); 
                 position.pesel = rmBox5.Text;
                 position.date = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
 
@@ -81,6 +83,7 @@ namespace BotApi
                 label8.Text = result + " " + i;
                 i++;
                 Thread.Sleep(5000);
+                
 
             } while (start == true);
 
