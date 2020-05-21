@@ -82,7 +82,7 @@ namespace BotApi
 
                 label8.Text = result + " " + i;
                 i++;
-                Thread.Sleep(5000);
+                await Task.Delay(5000);
                 
 
             } while (start == true);

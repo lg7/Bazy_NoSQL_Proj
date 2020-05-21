@@ -24,3 +24,16 @@ C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\Bo
 C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.csproj.CopyComplete
 C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.exe
 C:\Users\Adi\source\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.pdb
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\bin\Debug\BotApi.exe.config
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\bin\Debug\BotApi.exe
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\bin\Debug\BotApi.pdb
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\bin\Debug\Newtonsoft.Json.dll
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\bin\Debug\Newtonsoft.Json.xml
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.csprojAssemblyReference.cache
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.Form1.resources
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.Properties.Resources.resources
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.csproj.GenerateResource.cache
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.csproj.CoreCompileInputs.cache
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.csproj.CopyComplete
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.exe
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PrototypBot\BotApi\BotApi\obj\Debug\BotApi.pdb
