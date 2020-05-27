@@ -70,7 +70,7 @@ namespace BotApi
                 position.pos_y = Int32.Parse(posyBox4.Text) + rnd.Next(-10, 10);
                 position.rn = rmBox5.Text;
                 position.speed = Int32.Parse(speedBox7.Text) + rnd.Next(-5, 5); 
-                position.pesel = rmBox5.Text;
+                position.pesel = peselBox6.Text;
                 position.date = DateTime.SpecifyKind(DateTime.Now, DateTimeKind.Utc);
 
                 var json = JsonConvert.SerializeObject(position);
@@ -82,7 +82,7 @@ namespace BotApi
 
                 label8.Text = result + " " + i;
                 i++;
-                Thread.Sleep(5000);
+                await Task.Delay(5000);
                 
 
             } while (start == true);

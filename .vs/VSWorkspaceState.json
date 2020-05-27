@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\PrototypBot",
+    "\\PrototypBot\\BotApi"
   ],
+  "SelectedNode": "\\PrototypBot\\BotApi\\BotApi.sln",
   "PreviewInSolutionExplorer": false
 }
