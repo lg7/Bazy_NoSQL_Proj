@@ -16,5 +16,6 @@ namespace PKKierowca.Models
         public DateTime born { get; set; }
         public string adress { get; set; }
         public string profession { get; set; }
+        public string pesel { get; set; }
     }
 }
