@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace PKKierowca.Controllers
 {
+    [Authorize]
     public class MongoCRUD
     {
         private IMongoDatabase db;
@@ -66,7 +67,7 @@ namespace PKKierowca.Controllers
         {
             var collection = db.GetCollection<T>(table);
             var Query = Builders<T>.Filter.Eq("pesel", id);
-           
+
 
             return collection.Find(Query).ToList();
 
@@ -77,9 +78,9 @@ namespace PKKierowca.Controllers
         {
             var position = db.GetCollection<Position>("Position");
             var builder = Builders<Position>.Filter;
-            var filter = builder.Gt("speed", 50) & builder.Eq("pesel", pesel) ;
+            var filter = builder.Gt("speed", 50) & builder.Eq("pesel", pesel);
 
-             
+
             return position.Find(filter).ToList();
 
         }
@@ -89,16 +90,16 @@ namespace PKKierowca.Controllers
             var today = DateTime.Today;
             var month = new DateTime(today.Year, today.Month, 1);
             var lastMonth = month.AddMonths(-1);
-          // var lastMonth = DateTime.SpecifyKind(first, DateTimeKind.Utc);
+            // var lastMonth = DateTime.SpecifyKind(first, DateTimeKind.Utc);
             var builder = Builders<Position>.Filter;
-            var filter = builder.Gt("speed", 50) & builder.Eq("pesel", pesel) & builder.Gte("date",new BsonDateTime(lastMonth)) ;
+            var filter = builder.Gt("speed", 50) & builder.Eq("pesel", pesel) & builder.Gte("date", new BsonDateTime(lastMonth));
 
             return position.Find(filter).ToList();
         }
-     
-      
+
+
         /// ///////////////////////////////////////////////
- 
+
 
         public List<T> LoadRecordsbyRn<T>(string table, string rn)
         {
@@ -131,6 +132,9 @@ namespace PKKierowca.Controllers
 
             return position.Find(filter).ToList();
         }
+
+
+      
 
     }
 }

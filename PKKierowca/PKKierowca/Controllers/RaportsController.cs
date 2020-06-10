@@ -8,13 +8,11 @@ using PKKierowca.Models;
 
 namespace PKKierowca.Controllers
 {
+    [Authorize]
     public class RaportsController : ApiController
     {
 
         MongoCRUD db = new MongoCRUD("PKDriver");
-
-
-
 
         [Route("Raports/Drivers/{Id}")]
         [HttpGet]
@@ -43,7 +41,6 @@ namespace PKKierowca.Controllers
             return db.DriversTrafficOffendersDate(a.pesel);
 
         }
-
         /// ///////////////////////////////////
 
         [Route("Raports/Cars/{Id}")]

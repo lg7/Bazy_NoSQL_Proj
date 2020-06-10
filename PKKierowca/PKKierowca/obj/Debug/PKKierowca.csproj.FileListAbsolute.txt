@@ -222,3 +222,16 @@ D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\obj\Debug\PKKierowc
 D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\obj\Debug\PKKierowca.csproj.CopyComplete
 D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\obj\Debug\PKKierowca.dll
 D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\obj\Debug\PKKierowca.pdb
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Microsoft.IdentityModel.Logging.dll
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Microsoft.IdentityModel.Tokens.dll
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\System.IdentityModel.Tokens.Jwt.dll
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Microsoft.IdentityModel.JsonWebTokens.xml
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Microsoft.IdentityModel.Logging.xml
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Microsoft.IdentityModel.Tokens.xml
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\System.IdentityModel.Tokens.Jwt.xml
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Microsoft.Owin.dll
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Owin.dll
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Microsoft.Owin.xml
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\obj\Debug\PKKierowca.Resources.Constants.ApiInfo.resources
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\obj\Debug\PKKierowca.csproj.GenerateResource.cache
