@@ -235,3 +235,6 @@ D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Owin.dll
 D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Microsoft.Owin.xml
 D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\obj\Debug\PKKierowca.Resources.Constants.ApiInfo.resources
 D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\obj\Debug\PKKierowca.csproj.GenerateResource.cache
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Swashbuckle.Core.dll
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\WebActivatorEx.dll
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\PKKierowca.xml

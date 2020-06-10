@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace PKKierowca.Controllers
 {
-    [Authorize]
+   
     public class MongoCRUD
     {
         private IMongoDatabase db;

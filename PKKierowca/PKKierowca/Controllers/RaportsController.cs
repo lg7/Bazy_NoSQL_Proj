@@ -8,12 +8,20 @@ using PKKierowca.Models;
 
 namespace PKKierowca.Controllers
 {
+    /// <summary>
+    /// Raportowanie
+    /// </summary>
     [Authorize]
     public class RaportsController : ApiController
     {
 
         MongoCRUD db = new MongoCRUD("PKDriver");
 
+        /// <summary>
+        /// Raport ogolny na temat kierowcy
+        /// </summary>
+        /// <param name="Id">kierowcy</param>
+        /// <returns>lista pozycji kierowcy</returns>
         [Route("Raports/Drivers/{Id}")]
         [HttpGet]
         public List<Position> GetInfoDrivers(string Id)
@@ -22,6 +30,11 @@ namespace PKKierowca.Controllers
             return db.LoadRecordsbyPesel<Position>("Position", a.pesel);
 
         }
+        /// <summary>
+        /// Raport wykroczen kierowcy
+        /// </summary>
+        /// <param name="Id">kierowcy</param>
+        /// <returns>lista pozycji kierowcy</returns>
         [Route("Raports/Drivers/TrafficOffenders/{Id}")]
         [HttpGet]
         public List<Position> GetInfoDriversTrafficOffenders(string Id)
@@ -31,7 +44,11 @@ namespace PKKierowca.Controllers
             return db.DriversTrafficOffenders(a.pesel);
 
         }
-
+        /// <summary>
+        /// Raport wykroczen kierowcy w ostatnim miesiacu
+        /// </summary>
+        /// <param name="Id">kierowcy</param>
+        /// <returns>lista pozycji kierowcy</returns>
         [Route("Raports/Drivers/TrafficOffendersMonth/{Id}")]
         [HttpGet]
         public List<Position> GetInfoDriversTrafficOffendersMonth(string Id)
@@ -41,8 +58,13 @@ namespace PKKierowca.Controllers
             return db.DriversTrafficOffendersDate(a.pesel);
 
         }
-        /// ///////////////////////////////////
+        ///////////////////////////////////
 
+        /// <summary>
+        ///  Raport na temat pozycji samochodu  
+        /// </summary>
+        /// <param name="Id">id samochodu</param>
+        /// <returns>lista pozycji samochodu</returns>
         [Route("Raports/Cars/{Id}")]
         [HttpGet]
         public List<Position> GetInfoCars(string Id)
@@ -51,6 +73,11 @@ namespace PKKierowca.Controllers
             return db.LoadRecordsbyRn<Position>("Position", a.rn);
 
         }
+        /// <summary>
+        ///  Raport na wykroczen z udziałem samochodu  
+        /// </summary>
+        /// <param name="Id">id samochodu</param>
+        /// <returns>lista pozycji samochodu</returns>
         [Route("Raports/Cars/TrafficOffenders/{Id}")]
         [HttpGet]
         public List<Position> GetInfoCarsTrafficOffenders(string Id)
@@ -60,7 +87,11 @@ namespace PKKierowca.Controllers
             return db.CarsTrafficOffenders(a.rn);
 
         }
-
+        /// <summary>
+        ///  Raport na wykroczen z udziałem samochodu  z ostantiego miesiaca
+        /// </summary>
+        /// <param name="Id">id samochodu</param>
+        /// <returns>lista pozycji samochodu</returns>
         [Route("Raports/Cars/TrafficOffendersMonth/{Id}")]
         [HttpGet]
         public List<Position> GetInfoCarsTrafficOffendersMonth(string Id)
