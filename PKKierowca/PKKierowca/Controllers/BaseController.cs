@@ -23,7 +23,7 @@ namespace PKKierowca.Controllers
         /// Lista Auto
         /// </summary>
         /// <returns>Lista</returns>
-        
+
         [Route("API/Cars")]
         [HttpGet]
         public List<Cars> GetCars()
@@ -50,8 +50,14 @@ namespace PKKierowca.Controllers
         [HttpPost]
         public string PostCars([FromBody] Cars data)
         {
-            db.InsertData("Cars", data);
-            return "succes";
+            
+                if (db.LoadRecordsbyCar<Cars>(data.rn) == null)
+                {
+                    db.InsertData("Cars", data);
+                    return "succes";
+                }
+                 return "Fail car exist";
+            
         }
         /// <summary>
         /// usuniecie samochodu
@@ -62,7 +68,14 @@ namespace PKKierowca.Controllers
         [HttpDelete]
         public string DeleteCars(string Id)
         {
-            db.DeleteRecord<Cars>("Cars", Id);
+            try
+            {
+                db.DeleteRecord<Cars>("Cars", Id);
+            }
+            catch (Exception)
+            {
+                return "car doesn't exist ";
+            }
             return "delete record " + Id;
         }
         /// <summary>
@@ -81,70 +94,6 @@ namespace PKKierowca.Controllers
             return "update data " + Id;
         }
 
-        /*****************ADDRESSES****************/
-        /// <summary>
-        /// Lista adresow
-        /// </summary>
-        /// <returns>Lista</returns>
-        [AllowAnonymous]
-        [Route("API/Addresses")]
-        [HttpGet]
-        public List<Addresses> GetAddresses()
-        {
-            return db.LoadRecords<Addresses>("Addresses");
-        }
-        /// <summary>
-        /// 1 adres
-        /// </summary>
-        /// <param name="Id">adres id</param>
-        /// <returns>rekord</returns>
-        [Route("API/Addresses/{Id}")]
-        [HttpGet]
-        public Addresses GetAddressesId(string Id)
-        {
-            return db.LoadRecordsbyId<Addresses>("Addresses", Id);
-        }
-        /// <summary>
-        /// dodawanie nowego adresu
-        /// </summary>
-        /// <param name="data">Obiekt adres</param>
-        /// <returns>informacje</returns>
-        [Route("API/Addresses")]
-        [HttpPost]
-        public string PostAddresses([FromBody] Addresses data)
-        {
-            db.InsertData("Addresses", data);
-
-            return "succes";
-        }
-        /// <summary>
-        /// usuniecie adresu
-        /// </summary>
-        /// <param name="Id">id adresu</param>
-        /// <returns>id usunietgo rekodu</returns>
-        [Route("API/Addresses/{Id}")]
-        [HttpDelete]
-        public string DeleteAddresses(string Id)
-        {
-            db.DeleteRecord<Addresses>("Addresses", Id);
-            return "delete data " + Id;
-        }
-        /// <summary>
-        /// zaktualizowanie adresu
-        /// </summary>
-        /// <param name="data">obiekt </param>
-        /// <param name="Id">id obiektu</param>
-        /// <returns>id zaktualizowanego obiektu</returns>
-        [Route("API/Addresses/Update/{Id}")]
-        [HttpPut]
-        public string UpdateAddresses([FromBody] Addresses data, string Id)
-        {
-            data.id = Id;
-            db.UpdateRecord<Addresses>("Addresses", Id, data);
-
-            return "update data " + Id;
-        }
-
 
 
 
@@ -157,14 +106,13 @@ namespace PKKierowca.Controllers
         [HttpGet]
         public List<Drivers> GetDrivers()
         {
-            // var a = db.LoadRecords<Addresses>("Addresses");
             return db.LoadRecords<Drivers>("Drivers");
         }
         /// <summary>
         /// Kierowca
         /// </summary>
         /// <param name="Id">id kierowcy</param>
-       /// <returns>rekord</returns>
+        /// <returns>rekord</returns>
         [Route("API/Drivers/{Id}")]
         [HttpGet]
         public Drivers GetDriversById(string table, string Id)
@@ -192,8 +140,12 @@ namespace PKKierowca.Controllers
         [HttpDelete]
         public string DeleteDrivers(string Id)
         {
-            db.DeleteRecord<Drivers>("Drivers", Id);
-            return "delete record " + Id;
+            if (db.LoadRecordsbyId<Drivers>("Drivers", Id) != null)
+            {
+                db.DeleteRecord<Drivers>("Drivers", Id);
+                return "delete record " + Id;
+            }
+            return "Driver doesn't exist";
         }
         /// <summary>
         /// zaktualizowanie kierowcy
@@ -220,14 +172,13 @@ namespace PKKierowca.Controllers
         [HttpGet]
         public List<Position> GetPosition()
         {
-            // var a = db.LoadRecords<Addresses>("Addresses");
             return db.LoadRecords<Position>("Position");
         }
         /// <summary>
         /// Pozycja
         /// </summary>
         /// <param name="Id">id pozycji</param>
-       /// <returns>rekord</returns>
+        /// <returns>rekord</returns>
         [Route("API/Position/{Id}")]
         [HttpGet]
         public Position GetPositionById(string Id)
@@ -255,8 +206,12 @@ namespace PKKierowca.Controllers
         [HttpDelete]
         public string DeletePosition(string Id)
         {
-            db.DeleteRecord<Position>("Position", Id);
-            return "delete data " + Id;
+            if (db.LoadRecordsbyId<Position>("Position", Id) != null)
+            {
+                db.DeleteRecord<Position>("Position", Id);
+                return "delete data " + Id;
+            }
+            return "Postion doesn't exist";
         }
         /// <summary>
         /// zaktualizowanie pozycji
@@ -273,7 +228,7 @@ namespace PKKierowca.Controllers
 
             return "update data " + Id;
         }
-    
+
 
 
     }

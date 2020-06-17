@@ -521,41 +521,6 @@
             <param name="Id">id obiektu</param>
             <returns>id zaktualizowanego obiektu</returns>
         </member>
-        <member name="M:PKKierowca.Controllers.BaseController.GetAddresses">
-            <summary>
-            Lista adresow
-            </summary>
-            <returns>Lista</returns>
-        </member>
-        <member name="M:PKKierowca.Controllers.BaseController.GetAddressesId(System.String)">
-            <summary>
-            1 adres
-            </summary>
-            <param name="Id">adres id</param>
-            <returns>rekord</returns>
-        </member>
-        <member name="M:PKKierowca.Controllers.BaseController.PostAddresses(PKKierowca.Models.Addresses)">
-            <summary>
-            dodawanie nowego adresu
-            </summary>
-            <param name="data">Obiekt adres</param>
-            <returns>informacje</returns>
-        </member>
-        <member name="M:PKKierowca.Controllers.BaseController.DeleteAddresses(System.String)">
-            <summary>
-            usuniecie adresu
-            </summary>
-            <param name="Id">id adresu</param>
-            <returns>id usunietgo rekodu</returns>
-        </member>
-        <member name="M:PKKierowca.Controllers.BaseController.UpdateAddresses(PKKierowca.Models.Addresses,System.String)">
-            <summary>
-            zaktualizowanie adresu
-            </summary>
-            <param name="data">obiekt </param>
-            <param name="Id">id obiektu</param>
-            <returns>id zaktualizowanego obiektu</returns>
-        </member>
         <member name="M:PKKierowca.Controllers.BaseController.GetDrivers">
             <summary>
             Lista kierowcow

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace PKKierowca.Controllers
 {
-   
+
     public class MongoCRUD
     {
         private IMongoDatabase db;
@@ -19,7 +19,6 @@ namespace PKKierowca.Controllers
         {
             var client = new MongoClient("mongodb+srv://adrian:adrian2020@pkcluster-3agdh.mongodb.net/test?retryWrites=true&w=majority");
             db = client.GetDatabase(database);
-            //positionCollection = db.GetCollection<Position>("position");
 
         }
 
@@ -36,9 +35,17 @@ namespace PKKierowca.Controllers
 
         public T LoadRecordsbyId<T>(string table, string ID)
         {
-            var collection = db.GetCollection<T>(table);
-            var Query = Builders<T>.Filter.Eq("id", ID);
-            return collection.Find(Query).First();
+            try
+            {
+                var collection = db.GetCollection<T>(table);
+                var Query = Builders<T>.Filter.Eq("id", ID);
+                return collection.Find(Query).First();
+            }
+            catch (Exception)
+            {
+
+                return default;
+            }
         }
         public void InsertData<T>(string table, T data)
         {
@@ -60,81 +67,139 @@ namespace PKKierowca.Controllers
             var result = collection.ReplaceOne(Query, data);
 
         }
+        /************************/
+        public T LoadRecordsbyCar<T>(string rn)
+        {
+            try
+            {
+                var collection = db.GetCollection<T>("Cars");
+                var Query = Builders<T>.Filter.Eq("rn", rn);
+                return collection.Find(Query).First();
+            }
+            catch (Exception)
+            {
+                return default;
+            }
+        }
 
         /********************************/
 
-        public List<T> LoadRecordsbyPesel<T>(string table, string id)
+        public List<T> LoadRecordsbyPesel<T>(string table, string pesel)
         {
-            var collection = db.GetCollection<T>(table);
-            var Query = Builders<T>.Filter.Eq("pesel", id);
+            try
+            {
+                var collection = db.GetCollection<T>(table);
+                var Query = Builders<T>.Filter.Eq("pesel", pesel);
 
 
-            return collection.Find(Query).ToList();
+                return collection.Find(Query).ToList();
+            }
+            catch (Exception)
+            {
+                return default;
+
+            }
 
         }
 
         //
         public List<Position> DriversTrafficOffenders(string pesel)
         {
-            var position = db.GetCollection<Position>("Position");
-            var builder = Builders<Position>.Filter;
-            var filter = builder.Gt("speed", 50) & builder.Eq("pesel", pesel);
+            try
+            {
+                var position = db.GetCollection<Position>("Position");
+                var builder = Builders<Position>.Filter;
+                var filter = builder.Gt("speed", 50) & builder.Eq("pesel", pesel);
 
 
-            return position.Find(filter).ToList();
+                return position.Find(filter).ToList();
+            }
+            catch (Exception)
+            {
+                return default;
+
+            }
 
         }
         public List<Position> DriversTrafficOffendersDate(string pesel)
         {
-            var position = db.GetCollection<Position>("Position");
-            var today = DateTime.Today;
-            var month = new DateTime(today.Year, today.Month, 1);
-            var lastMonth = month.AddMonths(-1);
-            // var lastMonth = DateTime.SpecifyKind(first, DateTimeKind.Utc);
-            var builder = Builders<Position>.Filter;
-            var filter = builder.Gt("speed", 50) & builder.Eq("pesel", pesel) & builder.Gte("date", new BsonDateTime(lastMonth));
+            try
+            {
+                var position = db.GetCollection<Position>("Position");
+                var today = DateTime.Today;
+                var month = new DateTime(today.Year, today.Month, 1);
+                var lastMonth = month.AddMonths(-1);
+                // var lastMonth = DateTime.SpecifyKind(first, DateTimeKind.Utc);
+                var builder = Builders<Position>.Filter;
+                var filter = builder.Gt("speed", 50) & builder.Eq("pesel", pesel) & builder.Gte("date", new BsonDateTime(lastMonth));
 
-            return position.Find(filter).ToList();
+                return position.Find(filter).ToList();
+            }
+            catch (Exception)
+            {
+                return default;
+
+            }
         }
 
 
-        /// ///////////////////////////////////////////////
 
 
         public List<T> LoadRecordsbyRn<T>(string table, string rn)
         {
-            var collection = db.GetCollection<T>(table);
-            var Query = Builders<T>.Filter.Eq("rn", rn);
+            try
+            {
+                var collection = db.GetCollection<T>(table);
+                var Query = Builders<T>.Filter.Eq("rn", rn);
 
 
-            return collection.Find(Query).ToList();
+                return collection.Find(Query).ToList();
+            }
+            catch (Exception)
+            {
+                return default;
 
+            }
         }
         public List<Position> CarsTrafficOffenders(string rn)
         {
-            var position = db.GetCollection<Position>("Position");
-            var builder = Builders<Position>.Filter;
-            var filter = builder.Gt("speed", 50) & builder.Eq("rn", rn);
+            try
+            {
+                var position = db.GetCollection<Position>("Position");
+                var builder = Builders<Position>.Filter;
+                var filter = builder.Gt("speed", 50) & builder.Eq("rn", rn);
 
+                return position.Find(filter).ToList();
+            }
+            catch (Exception)
+            {
+                return default;
 
-            return position.Find(filter).ToList();
-
+            }
         }
         public List<Position> CarsTrafficOffendersDate(string rn)
         {
-            var position = db.GetCollection<Position>("Position");
-            var today = DateTime.Today;
-            var month = new DateTime(today.Year, today.Month, 1);
-            var lastMonth = month.AddMonths(-1);
-            var builder = Builders<Position>.Filter;
+            try
+            {
+                var position = db.GetCollection<Position>("Position");
+                var today = DateTime.Today;
+                var month = new DateTime(today.Year, today.Month, 1);
+                var lastMonth = month.AddMonths(-1);
+                var builder = Builders<Position>.Filter;
 
-            var filter = builder.Gt("speed", 50) & builder.Eq("rn", rn) & builder.Gte("date", new BsonDateTime(lastMonth));
+                var filter = builder.Gt("speed", 50) & builder.Eq("rn", rn) & builder.Gte("date", new BsonDateTime(lastMonth));
 
-            return position.Find(filter).ToList();
+                return position.Find(filter).ToList();
+            }
+            catch (Exception)
+            {
+                return default;
+
+            }
         }
 
 
-      
+
 
     }
 }
