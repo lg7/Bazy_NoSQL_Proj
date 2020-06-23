@@ -591,9 +591,6 @@
             <param name="Id">id obiektu</param>
             <returns>id zaktualizowanego obiektu</returns>
         </member>
-        <member name="M:PKKierowca.Controllers.MongoCRUD.LoadRecordsbyRn``1(System.String,System.String)">
-            ///////////////////////////////////////////////
-        </member>
         <member name="T:PKKierowca.Controllers.RaportsController">
             <summary>
             Raportowanie

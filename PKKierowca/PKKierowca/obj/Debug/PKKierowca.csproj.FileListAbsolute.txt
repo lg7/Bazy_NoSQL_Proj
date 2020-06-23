@@ -238,3 +238,5 @@ D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\obj\Debug\PKKierowc
 D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Swashbuckle.Core.dll
 D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\WebActivatorEx.dll
 D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\PKKierowca.xml
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Nancy.dll
+D:\Programowanie\repos\Bazy_NoSQL_Proj\PKKierowca\PKKierowca\bin\Nancy.xml
