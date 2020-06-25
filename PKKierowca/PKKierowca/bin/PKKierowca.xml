@@ -527,7 +527,7 @@
             </summary>
             <returns>Lista</returns>
         </member>
-        <member name="M:PKKierowca.Controllers.BaseController.GetDriversById(System.String,System.String)">
+        <member name="M:PKKierowca.Controllers.BaseController.GetDriversById(System.String)">
             <summary>
             Kierowca
             </summary>

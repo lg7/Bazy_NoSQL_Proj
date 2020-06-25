@@ -8,6 +8,8 @@ using System.Net.Http;
 using System.Web.Http;
 using Nancy.Json;
 using Nancy.Json.Simple;
+using System.Text;
+using System;
 
 namespace PKKierowca.Controllers
 {
@@ -17,18 +19,49 @@ namespace PKKierowca.Controllers
     [Authorize]
     public class BaseController : ApiController
     {
+
+        private HttpResponseMessage responseMessage(HttpStatusCode httpStatusCode, string response, string data)
+        {
+            HttpResponseMessage responseMessage = new HttpResponseMessage();
+            if (httpStatusCode == HttpStatusCode.OK)
+            {
+                responseMessage.StatusCode = HttpStatusCode.OK;
+                responseMessage.ReasonPhrase = response;
+                responseMessage.Content = new StringContent(data, UnicodeEncoding.UTF8, "application/json");
+                return responseMessage;
+            }
+            responseMessage.StatusCode = HttpStatusCode.BadRequest;
+            return responseMessage;
+
+        }
+        private HttpResponseMessage responseMessage(HttpStatusCode httpStatusCode, string response)
+        {
+            HttpResponseMessage responseMessage = new HttpResponseMessage();
+            if (httpStatusCode == HttpStatusCode.BadRequest)
+            {
+                responseMessage.StatusCode = HttpStatusCode.BadRequest;
+                responseMessage.ReasonPhrase = response;
+                //responseMessage.Content = new StringContent(data, UnicodeEncoding.UTF8, "application/json");
+            }
+            if (httpStatusCode == HttpStatusCode.OK)
+            {
+                responseMessage.StatusCode = HttpStatusCode.OK;
+                responseMessage.ReasonPhrase = response;
+                return responseMessage;
+            }
+            return responseMessage;
+        }
+
         MongoCRUD db = new MongoCRUD("PKDriver");
         /******************CARS********************/
         /// <summary>
         /// Lista Auto
         /// </summary>
         /// <returns>Lista</returns>
-
         [Route("API/Cars")]
         [HttpGet]
         public List<Cars> GetCars()
         {
-
             return db.LoadRecords<Cars>("Cars");
         }
         /// <summary>
@@ -40,23 +73,18 @@ namespace PKKierowca.Controllers
         [HttpGet]
         public HttpResponseMessage GetCarsById(string Id)
         {
-            HttpResponseMessage responseMessage = new HttpResponseMessage();
+
             if (db.LoadRecordsbyId<Cars>("Cars", Id) != null)
             {
                 Cars auto = db.LoadRecordsbyId<Cars>("Cars", Id);
-                var json= new JavaScriptSerializer().Serialize(auto);
-                responseMessage.StatusCode = HttpStatusCode.OK;
-                responseMessage.ReasonPhrase = "Succes";
-                responseMessage.Content = new StringContent(json);
-              
 
-                return responseMessage;
+                var json = new JavaScriptSerializer().Serialize(auto);
+                return responseMessage(HttpStatusCode.OK, "Succes", json);
             }
-            responseMessage.StatusCode = HttpStatusCode.BadRequest;
-            responseMessage.Content = new StringContent("Car doesn't exist");
-
-            return responseMessage;
+            return responseMessage(HttpStatusCode.BadRequest, "Car doesn't exist");
         }
+
+
         /// <summary>
         /// dodwanie nowego auta
         /// </summary>
@@ -66,19 +94,23 @@ namespace PKKierowca.Controllers
         [HttpPost]
         public HttpResponseMessage PostCars([FromBody] Cars data)
         {
-            HttpResponseMessage responseMessage = new HttpResponseMessage();
+
             if (db.LoadRecordsbyCar<Cars>(data.rn) == null)
             {
                 db.InsertData("Cars", data);
-                responseMessage.StatusCode = HttpStatusCode.OK;
-                responseMessage.ReasonPhrase = "Succes";
-                responseMessage.Content = new StringContent("Add record");
-                return responseMessage;
+                //responseMessage.StatusCode = HttpStatusCode.OK;
+                //responseMessage.ReasonPhrase = "Succes";
+                //responseMessage.Content = new StringContent("Add record");
+                //return responseMessage;
+                return responseMessage(HttpStatusCode.OK,
+                                       "Succes");
             }
-            responseMessage.StatusCode = HttpStatusCode.BadRequest;
-            responseMessage.Content = new StringContent("Car doesn't exist");
+            //responseMessage.StatusCode = HttpStatusCode.BadRequest;
+            //responseMessage.Content = new StringContent("Car doesn't exist");
+            //return responseMessage;
 
-            return responseMessage;
+            return responseMessage(HttpStatusCode.BadRequest, "Car doesn't exist");
+
 
         }
         /// <summary>
@@ -90,21 +122,13 @@ namespace PKKierowca.Controllers
         [HttpDelete]
         public HttpResponseMessage DeleteCars(string Id)
         {
-            HttpResponseMessage responseMessage = new HttpResponseMessage();
             if (db.LoadRecordsbyId<Cars>("Cars", Id) != null)
             {
-                responseMessage.StatusCode = HttpStatusCode.OK;
-                responseMessage.ReasonPhrase = "Succes";
-                responseMessage.Content = new StringContent("delete record");
-
                 db.DeleteRecord<Cars>("Cars", Id);
-
-                return responseMessage;
+                return responseMessage(HttpStatusCode.OK, "Succes", "Delete record");
             }
-            responseMessage.StatusCode = HttpStatusCode.BadRequest;
-            responseMessage.Content = new StringContent("Car doesn't exist");
 
-            return responseMessage;
+            return responseMessage(HttpStatusCode.BadRequest, "Car doesn't exist");
         }
         /// <summary>
         /// zaktualizowanie samochodu
@@ -114,12 +138,16 @@ namespace PKKierowca.Controllers
         /// <returns>id zaktualizowanego obiektu</returns>
         [Route("API/Cars/Update/{Id}")]
         [HttpPut]
-        public string UpdateCars([FromBody] Cars data, string Id)
+        public HttpResponseMessage UpdateCars([FromBody] Cars data, string Id)
         {
-            data.id = Id;
-            db.UpdateRecord<Cars>("Cars", Id, data);
-
-            return "update data " + Id;
+            if (db.LoadRecordsbyId<Cars>("Cars", Id) != null)
+            {
+                data.id = Id;
+                db.UpdateRecord<Cars>("Cars", Id, data);
+                return responseMessage(HttpStatusCode.OK,
+                                  "Succes", "Update record");
+            }
+            return responseMessage(HttpStatusCode.BadRequest, "Car doesn't exist");
         }
 
 
@@ -143,9 +171,19 @@ namespace PKKierowca.Controllers
         /// <returns>rekord</returns>
         [Route("API/Drivers/{Id}")]
         [HttpGet]
-        public Drivers GetDriversById(string table, string Id)
+        public HttpResponseMessage GetDriversById(string Id)
         {
-            return db.LoadRecordsbyId<Drivers>("Drivers", Id);
+            if (db.LoadRecordsbyId<Drivers>("Drivers", Id) != null)
+            {
+                Drivers drivers = db.LoadRecordsbyId<Drivers>("Drivers", Id);
+
+                var json = new JavaScriptSerializer().Serialize(drivers);
+
+                return responseMessage(HttpStatusCode.OK, "Succes", json);
+
+
+            }
+            return responseMessage(HttpStatusCode.BadRequest, "Driver doesn't exist");
         }
         /// <summary>
         /// dodaj kierowce
@@ -154,10 +192,18 @@ namespace PKKierowca.Controllers
         /// <returns>informacje</returns>
         [Route("API/Drivers")]
         [HttpPost]
-        public string PostDrivers([FromBody] Drivers data)
+        public HttpResponseMessage PostDrivers([FromBody] Drivers data)
         {
-            db.InsertData("Drivers", data);
-            return "succes";
+
+            if (db.LoadRecordsbyCar<Drivers>(data.pesel) == null)
+            {
+                db.InsertData("Drivers", data);
+
+                return responseMessage(HttpStatusCode.OK, "Succes", "Add record");
+
+            }
+
+            return responseMessage(HttpStatusCode.BadRequest, "Driver doesn't exist");
         }
         /// <summary>
         /// usuniecie kierowcy
@@ -168,18 +214,14 @@ namespace PKKierowca.Controllers
         [HttpDelete]
         public HttpResponseMessage DeleteDrivers(string Id)
         {
-            HttpResponseMessage responseMessage = new HttpResponseMessage();
+
             if (db.LoadRecordsbyId<Drivers>("Drivers", Id) != null)
             {
-                responseMessage.StatusCode = HttpStatusCode.OK;
-                responseMessage.ReasonPhrase = "Succes";
-                responseMessage.Content = new StringContent("delete record");
                 db.DeleteRecord<Drivers>("Drivers", Id);
-                return responseMessage;
+                return responseMessage(HttpStatusCode.OK, "Succes", "Delete record");
             }
-            responseMessage.StatusCode = HttpStatusCode.BadRequest;
-            responseMessage.Content = new StringContent("Driver doesn't exist");
-            return responseMessage;
+
+            return responseMessage(HttpStatusCode.BadRequest, "Driver doesn't exist");
         }
         /// <summary>
         /// zaktualizowanie kierowcy
@@ -189,12 +231,16 @@ namespace PKKierowca.Controllers
         /// <returns>id zaktualizowanego obiektu</returns>
         [Route("API/Drivers/Update/{Id}")]
         [HttpPut]
-        public string Update([FromBody] Drivers data, string Id)
+        public HttpResponseMessage Update([FromBody] Drivers data, string Id)
         {
-            data.id = Id;
-            db.UpdateRecord<Drivers>("Drivers", Id, data);
+            if (db.LoadRecordsbyId<Drivers>("Drivers", Id) != null)
+            {
+                data.id = Id;
+                db.UpdateRecord<Drivers>("Drivers", Id, data);
 
-            return "update data " + Id;
+                return responseMessage(HttpStatusCode.OK, "update data " + Id);
+            }
+            return responseMessage(HttpStatusCode.BadRequest, "Driver doesn't exist");
         }
 
         /***************POSITON********************/
@@ -215,9 +261,15 @@ namespace PKKierowca.Controllers
         /// <returns>rekord</returns>
         [Route("API/Position/{Id}")]
         [HttpGet]
-        public Position GetPositionById(string Id)
+        public HttpResponseMessage GetPositionById(string Id)
         {
-            return db.LoadRecordsbyId<Position>("Position", Id);
+            if (db.LoadRecordsbyId<Drivers>("Drivers", Id) != null)
+            {
+                Position position = db.LoadRecordsbyId<Position>("Position", Id);
+                var json = new JavaScriptSerializer().Serialize(position);
+                return responseMessage(HttpStatusCode.OK, "Succes", json);
+            }
+            return responseMessage(HttpStatusCode.BadRequest, "Position doesn't exist");
         }
         /// <summary>
         /// dodwanie nowej pozycji
@@ -226,10 +278,11 @@ namespace PKKierowca.Controllers
         /// <returns>informacje</returns>
         [AllowAnonymous]
         [HttpPost]
-        public string PostPosition([FromBody] Position data)
+        public HttpResponseMessage PostPosition([FromBody] Position data)
         {
+
             db.InsertData("Position", data);
-            return "succes";
+            return responseMessage(HttpStatusCode.OK, "Succes", "Added record");
         }
         /// <summary>
         /// usuniecie pozycji
@@ -238,14 +291,14 @@ namespace PKKierowca.Controllers
         /// <returns>id usunietgo rekodu</returns>
         [Route("API/Position/{Id}")]
         [HttpDelete]
-        public string DeletePosition(string Id)
+        public HttpResponseMessage DeletePosition(string Id)
         {
-            if (db.LoadRecordsbyId<Position>("Position", Id) != null)
+            if (db.LoadRecordsbyId<Drivers>("Drivers", Id) != null)
             {
                 db.DeleteRecord<Position>("Position", Id);
-                return "delete data " + Id;
+                return responseMessage(HttpStatusCode.OK, "Succes", "delete data " + Id);
             }
-            return "Postion doesn't exist";
+            return responseMessage(HttpStatusCode.BadRequest, "Position doesn't exist");
         }
         /// <summary>
         /// zaktualizowanie pozycji
@@ -255,12 +308,15 @@ namespace PKKierowca.Controllers
         /// <returns>id zaktualizowanego obiektu</returns>
         [Route("API/Position/Update/{Id}")]
         [HttpPut]
-        public string Update([FromBody] Position data, string Id)
+        public HttpResponseMessage Update([FromBody] Position data, string Id)
         {
-            data.id = Id;
-            db.UpdateRecord<Position>("Position", Id, data);
-
-            return "update data " + Id;
+            if (db.LoadRecordsbyId<Drivers>("Drivers", Id) != null)
+            {
+                data.id = Id;
+                db.UpdateRecord<Position>("Position", Id, data);
+                return responseMessage(HttpStatusCode.OK, "Succes", "Update data " + Id);
+            }
+            return responseMessage(HttpStatusCode.BadRequest, "Position doesn't exist");
         }
 
 

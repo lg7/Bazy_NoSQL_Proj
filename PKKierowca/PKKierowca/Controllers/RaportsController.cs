@@ -29,12 +29,9 @@ namespace PKKierowca.Controllers
             var a = db.LoadRecordsbyId<Drivers>("Drivers", Id);
             if (a == null)
             {
-
                 return null;
-               
             }
             return db.LoadRecordsbyPesel<Position>("Position", a.pesel);
-
         }
         /// <summary>
         /// Raport wykroczen kierowcy
@@ -46,11 +43,9 @@ namespace PKKierowca.Controllers
         public List<Position> GetInfoDriversTrafficOffenders(string Id)
         {
             var a = db.LoadRecordsbyId<Drivers>("Drivers", Id);
-            if (a==null)
+            if (a == null)
             {
-
                 return null;
-
             }
             return db.DriversTrafficOffenders(a.pesel);
 
@@ -68,9 +63,7 @@ namespace PKKierowca.Controllers
             var a = db.LoadRecordsbyId<Drivers>("Drivers", Id);
             if (a == null)
             {
-
                 return null;
-
             }
             return db.DriversTrafficOffendersDate(a.pesel);
 
@@ -90,9 +83,7 @@ namespace PKKierowca.Controllers
             var a = db.LoadRecordsbyId<Cars>("Cars", Id);
             if (a == null)
             {
-
                 return null;
-
             }
             return db.LoadRecordsbyRn<Position>("Position", a.rn);
 
@@ -110,9 +101,7 @@ namespace PKKierowca.Controllers
             var a = db.LoadRecordsbyId<Cars>("Cars", Id);
             if (a == null)
             {
-
                 return null;
-
             }
             return db.CarsTrafficOffenders(a.rn);
 
@@ -130,9 +119,7 @@ namespace PKKierowca.Controllers
             var a = db.LoadRecordsbyId<Cars>("Cars", Id);
             if (a == null)
             {
-
                 return null;
-
             }
             return db.CarsTrafficOffendersDate(a.rn);
 
