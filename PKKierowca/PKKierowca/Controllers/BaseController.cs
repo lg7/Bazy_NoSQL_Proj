@@ -40,13 +40,13 @@ namespace PKKierowca.Controllers
             if (httpStatusCode == HttpStatusCode.BadRequest)
             {
                 responseMessage.StatusCode = HttpStatusCode.BadRequest;
-                responseMessage.ReasonPhrase = response;
+                responseMessage.Content = new StringContent(response, UnicodeEncoding.UTF8, "application/json");
                 //responseMessage.Content = new StringContent(data, UnicodeEncoding.UTF8, "application/json");
             }
             if (httpStatusCode == HttpStatusCode.OK)
             {
                 responseMessage.StatusCode = HttpStatusCode.OK;
-                responseMessage.ReasonPhrase = response;
+                responseMessage.Content = new StringContent(response, UnicodeEncoding.UTF8, "application/json");
                 return responseMessage;
             }
             return responseMessage;
